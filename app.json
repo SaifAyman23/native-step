@@ -1,12 +1,13 @@
 {
   "expo": {
-    "name": "native-step",
-    "slug": "native-step",
+    "name": "react-rapido-native",
+    "slug": "react-rapido-native",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "newapp",
-    "userInterfaceStyle": "automatic",
+    "icon": "./assets/images/logo.png",
+    "scheme": "rapidonative",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#000000",
     "ios": {
       "icon": "./assets/expo.icon"
     },
@@ -21,7 +22,6 @@
     },
     "web": {
       "output": "static",
-      // "favicon": "./assets/images/favicon.png",
       "bundler": "metro"
     },
     "plugins": [
@@ -29,11 +29,13 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#208AEF",
-          "image": "./assets/images/splash-icon.png",
-          "imageWidth": 76
+          "backgroundColor": "#000000",
+          "image": "./assets/images/logo.png",
+          "imageWidth": 128
         }
-      ]
+      ],
+      "expo-secure-store",
+      "expo-localization"
     ],
     "experiments": {
       "typedRoutes": true,
