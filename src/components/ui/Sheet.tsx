@@ -1093,8 +1093,13 @@ export function SheetPicker(props: SheetPickerProps) {
     return () => setSheetExpandable(false)
   }, [expandable, setSheetExpandable])
 
-  const selected: string[] =
-    props.multiple === true ? props.value : props.value === undefined ? [] : [props.value]
+  // The picker owns a draft seeded from `value` at mount. The sheet element is
+  // captured at present() time, so a parent re-render would never reach these
+  // rows — internal state is the only channel that updates checkmarks live.
+  const [draft, setDraft] = useState<string[]>(() =>
+    props.multiple === true ? [...props.value] : props.value === undefined ? [] : [props.value]
+  )
+  const selected = draft
 
   const searchable = props.searchable ?? options.length > SEARCH_THRESHOLD
 
@@ -1110,14 +1115,15 @@ export function SheetPicker(props: SheetPickerProps) {
 
   const pick = (optionValue: string) => {
     if (props.multiple === true) {
-      const current = props.value
-      props.onChange(
-        current.includes(optionValue)
-          ? current.filter((item) => item !== optionValue)
-          : [...current, optionValue]
-      )
+      const next = draft.includes(optionValue)
+        ? draft.filter((item) => item !== optionValue)
+        : [...draft, optionValue]
+      setDraft(next)
+      props.onChange(next)
       return
     }
+    const next = [optionValue]
+    setDraft(next)
     props.onChange(optionValue)
   }
 
@@ -1182,12 +1188,12 @@ export function SheetPicker(props: SheetPickerProps) {
       {multiple ? (
         <Button
           title={
-            props.value.length === 0
+            draft.length === 0
               ? 'Select at least one'
-              : `Confirm ${props.value.length} selected`
+              : `Confirm ${draft.length} selected`
           }
           block
-          disabled={props.value.length === 0}
+          disabled={draft.length === 0}
           onPress={onConfirm}
         />
       ) : null}

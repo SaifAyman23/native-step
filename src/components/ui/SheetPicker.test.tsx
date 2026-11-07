@@ -64,7 +64,9 @@ describe('SheetPicker', () => {
     await fireEvent.press(screen.getByText('Dairy'))
     expect(onChange).toHaveBeenCalledWith(['peanut', 'dairy'])
 
-    await fireEvent.press(screen.getByText('Confirm 1 selected'))
+    // The picker owns the draft internally, so the confirm button reflects
+    // the live selection instead of the frozen `value` prop.
+    await fireEvent.press(screen.getByText('Confirm 2 selected'))
     expect(onConfirm).toHaveBeenCalled()
   })
 

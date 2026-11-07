@@ -119,9 +119,10 @@ export function QootRing({
       <View className="items-center justify-center px-s7">
         {value ? (
           <Text
-            className={cn("text-text text-title")}
             // Sized from the ring spec, not the type ramp: the centre number has
             // to stay inside its own circle at any global type size.
+            // Color comes from Txt's default (text-text) — adding "text-text text-title"
+            // here collapses in twMerge (shared text-* group) and drops the color to black.
             style={{
               lineHeight: Math.round(centre.number * 1.06),
               fontSize: centre.number,

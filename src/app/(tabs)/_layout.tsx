@@ -2,7 +2,7 @@ import { Tabs } from 'expo-router'
 
 import { RapidoTabBar } from '@/components/shared/navigation/RapidoTabBar'
 import { TabBarInsetProvider } from '@/components/shared/navigation/TabBarInsetContext'
-import { HouseIcon, SparkleIcon, SquaresFourIcon } from '@/components/ui/icons'
+import { HouseIcon, SquaresFourIcon } from '@/components/ui/icons'
 
 export const unstable_settings = {
   anchor: '(home)',
@@ -38,13 +38,6 @@ export default function TabsLayout() {
           options={{
             title: 'Components',
             tabBarIcon: () => <SquaresFourIcon />,
-          }}
-        />
-        <Tabs.Screen
-          name="(examples)"
-          options={{
-            title: 'Examples',
-            tabBarIcon: () => <SparkleIcon />,
           }}
         />
       </Tabs>

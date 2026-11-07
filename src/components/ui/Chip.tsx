@@ -66,14 +66,16 @@ export function Chip({
       <Text
         className={cn(
           size === 'sm' ? 'text-xs' : 'text-sm',
-          'font-rubik-semibold',
-          disabled
-            ? 'text-text-3'
-            : selected
-              ? 'text-primary-text'
+          // Selected is the strongest read on the pill: bold primary-text on the
+          // tint. Default stays text-text so the row reads as a calm set, and
+          // locked/disabled sink to text-3. Disabled must win over locked.
+          selected
+            ? 'font-rubik-bold text-primary-text'
+            : disabled
+              ? 'font-rubik-semibold text-text-3'
               : locked
-                ? 'text-text-3'
-                : 'text-text'
+                ? 'font-rubik-semibold text-text-3'
+                : 'font-rubik-semibold text-text-2'
         )}
       >
         {label}

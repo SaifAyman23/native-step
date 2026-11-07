@@ -47,6 +47,11 @@ const initPromise = i18n.use(initReactI18next).init({
   react: {
     useSuspense: false,
   },
+  missingKeyHandler: (ns, key, fallback) => {
+    // Return the key itself so UI shows the key name instead of crashing
+    // This prevents "Text strings must be rendered within a <Text> component" error
+    return fallback
+  },
 })
 
 export { initPromise }

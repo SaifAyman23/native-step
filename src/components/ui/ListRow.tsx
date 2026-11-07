@@ -251,7 +251,7 @@ export function ListRow({
 
       <View className="min-w-0 flex-1">
         <View className="flex-row items-center gap-s2">
-          <Text className="shrink text-caption font-rubik-bold text-text">{title}</Text>
+          <Text className="shrink text-caption font-rubik-bold text-text" numberOfLines={1} ellipsizeMode="tail">{title}</Text>
           {pending ? (
             <View className="rounded-xs bg-info-bg px-s2 py-[3px]">
               <Text className="font-rubik-semibold text-info-text">pending</Text>
